@@ -614,15 +614,6 @@
 
   <script src="main.min.js"></script>
   <script>
-    // Desabilitar video automático en móvil para mejor performance
-    if (window.innerWidth <= 768) {
-      const heroVideo = document.getElementById('heroVideo');
-      if (heroVideo) {
-        heroVideo.pause();
-        heroVideo.autoplay = false;
-      }
-    }
-
     // Contact Form Functions
     function openContactForm() {
       document.getElementById('contactModal').style.display = 'block';

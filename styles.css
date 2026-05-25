@@ -1600,51 +1600,105 @@ body {
 
 /* Mobile (<768px) */
 @media (max-width: 768px) {
-  /* Hero: Muestra solo poster en móvil, no el video */
+  /* ========== HERO SECTION ========== */
+  
+  /* El video DEBE ser visible en móvil también */
   .hero-video {
-    display: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   .hero-background {
-    background-image: url('images/hero-bg.jpg');
-    background-size: cover;
-    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  /* Hero content: cambiar de position absolute a relative para flow natural */
+  .hero {
+    min-height: 100vh;
+    height: auto;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 40px;
   }
 
   .hero-content {
-    max-width: 90%;
-    padding: 30px 15px;
-    position: absolute;
-    bottom: 60px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    z-index: 4;
+    max-width: 100%;
+    width: 100%;
+    padding: 40px 16px 60px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+    transform: none;
+    left: auto;
+    bottom: auto;
   }
 
+  /* Overlay: cambiar a gradiente vertical (de arriba hacia abajo) */
   .hero-overlay {
     background: linear-gradient(
       180deg,
-      rgba(8, 8, 11, 0.3) 0%,
-      rgba(8, 8, 11, 0.5) 35%,
-      rgba(8, 8, 11, 0.75) 60%,
-      rgba(8, 8, 11, 0.9) 100%
+      rgba(8, 8, 11, 0.2) 0%,
+      rgba(8, 8, 11, 0.4) 30%,
+      rgba(8, 8, 11, 0.7) 60%,
+      rgba(8, 8, 11, 0.95) 100%
     );
+    z-index: 2;
   }
 
+  .hero-vignette {
+    box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Tipografía: reducida para móvil */
   .accent-line {
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    text-shadow: 0 0 15px rgba(232, 93, 48, 0.5);
   }
 
   .heading-main {
-    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
+    line-height: 1.1;
   }
 
   .heading-secondary {
-    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    line-height: 1.2;
   }
 
   .subtitle {
-    font-size: clamp(0.9rem, 1.8vw, 1rem);
+    font-size: clamp(0.85rem, 1.5vw, 0.95rem);
     max-width: 100%;
+    line-height: 1.5;
+  }
+
+  .button-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 0.85rem;
+    border-radius: 8px;
+  }
+
+  .btn-primary {
+    box-shadow: 0 0 15px rgba(232, 93, 48, 0.3);
   }
 
   .scroll-accent {
@@ -1652,31 +1706,62 @@ body {
     left: 20px;
   }
 
-  /* Vision Section - Mobile optimization */
+  /* ========== VISION SECTION ========== */
+  
   .vision-section {
     height: auto;
-    min-height: 60vh;
-    padding: 60px 0;
+    min-height: 70vh;
+    padding: 0;
   }
 
   .vision-background {
-    height: 100%;
-    min-height: 300px;
+    height: 60vh;
+    min-height: 350px;
   }
 
   .vision-image {
-    max-width: 100%;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
-  /* Technology Section - Mobile optimization */
+  .vision-overlay {
+    background: linear-gradient(
+      180deg,
+      transparent 30%,
+      rgba(8, 8, 11, 0.6) 70%,
+      rgba(8, 8, 11, 0.95) 100%
+    );
+  }
+
+  .vision-content {
+    padding: 40px 16px 60px 16px;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .vision-quote {
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    line-height: 1.4;
+  }
+
+  .vision-byline {
+    justify-content: center;
+  }
+
+  /* ========== TECHNOLOGY SECTION ========== */
+  
   .tech-sticky-wrapper {
+    grid-template-columns: 1fr;
     min-height: auto;
   }
 
   .tech-image-container {
-    height: 40vh;
-    min-height: 250px;
+    position: relative;
+    height: 45vh;
+    min-height: 300px;
+    top: auto;
   }
 
   .tech-image {
@@ -1685,14 +1770,29 @@ body {
   }
 
   .tech-content {
-    padding: 40px 5%;
-    gap: 100px;
+    padding: 50px 16px;
+    gap: 120px;
   }
 
+  .tech-block {
+    text-align: center;
+  }
+
+  .tech-title {
+    font-size: 1.3rem;
+  }
+
+  .tech-text {
+    font-size: 0.9rem;
+    max-width: 100%;
+  }
+
+  /* ========== GENERAL SECTIONS ========== */
+  
   .capabilities-section,
   .process-section,
   .final-cta-section {
-    padding: 60px 5%;
+    padding: 60px 16px;
   }
 
   .section-heading-area {
@@ -1700,55 +1800,65 @@ body {
   }
 
   .section-heading {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-size: clamp(1.5rem, 4vw, 2.3rem);
   }
 
   .section-accent {
     font-size: clamp(0.85rem, 1.2vw, 0.95rem);
   }
 
-  .button-group {
-    flex-direction: column;
-    width: 100%;
+  .section-subtext {
+    font-size: 0.9rem;
   }
 
-  .btn-primary,
-  .btn-secondary {
-    width: 100%;
-    padding: 14px 24px;
+  /* ========== BENTO GRID ========== */
+  
+  .bento-grid {
+    grid-template-columns: 1fr;
   }
 
-  .vision-content {
-    padding: 0 0 60px 5%;
+  .bento-card {
+    padding: 24px;
   }
 
-  .footer-row {
-    flex-direction: column;
-    gap: 20px;
-    text-align: center;
+  .card-title {
+    font-size: 1.2rem;
   }
 
-  .footer-row-top,
-  .footer-row-bottom {
-    flex-direction: column;
-    gap: 20px;
+  .card-description {
+    font-size: 0.9rem;
   }
 
-  .footer-links {
-    flex-direction: column;
-    gap: 12px;
+  /* ========== SERVICIOS ========== */
+  
+  .servicio-card {
+    padding: 24px;
   }
 
-  /* Mobile: Proceso Steps - Mejor layout */
+  .servicio-title {
+    font-size: 1.1rem;
+  }
+
+  .servicio-desc {
+    font-size: 0.9rem;
+  }
+
+  .servicio-features span {
+    font-size: 0.8rem;
+  }
+
+  /* ========== PROCESO STEPS ========== */
+  
   .proceso-steps {
     flex-wrap: wrap;
     overflow-x: visible;
     justify-content: center;
-    gap: 24px;
+    gap: 20px;
+    padding: 0;
   }
 
   .paso {
-    flex: 1 1 calc(50% - 12px);
+    flex: 1 1 calc(50% - 10px);
     min-width: auto;
     max-width: none;
   }
@@ -1764,27 +1874,29 @@ body {
   }
 
   .paso h3 {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 
   .paso p {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
 
   .paso-arrow {
     display: none;
   }
 
-  /* Mobile: Stats Grid */
+  /* ========== STATS ========== */
+  
   .stats-grid {
     grid-template-columns: 1fr;
     gap: 32px;
+    padding: 20px 0;
   }
 
   .stat-item {
     border-right: none !important;
     border-bottom: none !important;
-    padding: 25px 15px;
+    padding: 30px 0;
   }
 
   .stat-number {
@@ -1795,29 +1907,8 @@ body {
     font-size: 0.7rem;
   }
 
-  /* Fix para bento cards en móvil */
-  .bento-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .card-title {
-    font-size: 1.2rem;
-  }
-
-  /* Fix para servicios cards */
-  .servicio-card {
-    padding: 24px;
-  }
-
-  .servicio-title {
-    font-size: 1.1rem;
-  }
-
-  .servicio-desc {
-    font-size: 0.9rem;
-  }
-
-  /* Fix para FAQ */
+  /* ========== FAQ ========== */
+  
   .faq-item {
     padding: 18px;
   }
@@ -1828,6 +1919,151 @@ body {
 
   .faq-respuesta {
     font-size: 0.85rem;
+  }
+
+  /* ========== MODAL DE CONTACTO ========== */
+  
+  .modal-content {
+    width: 95%;
+    max-width: 100%;
+    padding: 30px 20px;
+    border-radius: 12px;
+  }
+
+  .modal-content h2 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+
+  .modal-content > p {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  .close {
+    right: 15px;
+    top: 15px;
+    font-size: 24px;
+  }
+
+  #contactForm {
+    gap: 14px;
+  }
+
+  #contactForm input,
+  #contactForm textarea {
+    padding: 12px;
+    font-size: 0.95rem;
+    border-radius: 6px;
+  }
+
+  #contactForm input::placeholder,
+  #contactForm textarea::placeholder {
+    font-size: 0.85rem;
+  }
+
+  .modal-content .btn-primary {
+    margin-top: 8px;
+  }
+
+  /* ========== FOOTER ========== */
+  
+  .footer-row {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .footer-row-top,
+  .footer-row-bottom {
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .footer-logo {
+    font-size: 1rem;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-links a {
+    font-size: 0.85rem;
+  }
+
+  .footer-copyright {
+    font-size: 0.8rem;
+  }
+
+  .footer-tagline {
+    font-size: 0.85rem;
+  }
+}
+
+/* ========== BREAKPOINT EXTRA PEQUEÑO (< 480px) ========== */
+@media (max-width: 480px) {
+  .hero-content {
+    padding: 30px 12px 50px 12px;
+  }
+
+  .heading-main {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+  }
+
+  .heading-secondary {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  .subtitle {
+    font-size: clamp(0.8rem, 1.3vw, 0.9rem);
+  }
+
+  .accent-line {
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 12px 14px;
+    font-size: 0.8rem;
+  }
+
+  .capabilities-section,
+  .process-section,
+  .final-cta-section {
+    padding: 50px 12px;
+  }
+
+  .section-heading {
+    font-size: clamp(1.3rem, 3.5vw, 2rem);
+  }
+
+  .vision-content {
+    padding: 30px 12px 50px 12px;
+  }
+
+  .vision-quote {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+  }
+
+  .tech-content {
+    padding: 40px 12px;
+  }
+
+  .modal-content {
+    padding: 24px 16px;
+  }
+
+  .servicio-card,
+  .bento-card {
+    padding: 18px;
+  }
+
+  .faq-item {
+    padding: 14px;
   }
 }
 
